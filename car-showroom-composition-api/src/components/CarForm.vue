@@ -3,7 +3,7 @@
         <vee-form class="modal" :validation-schema="schema" @submit="submitForm">
             <div class="modal-content">
 
-                <h2 v-if="!isAddModel">Edit car</h2>
+                <h2 v-if="!openAddCarModel">Edit car</h2>
                 <h2 v-else>Add car</h2>
 
                 <div class="car-details">
@@ -72,10 +72,10 @@ export default {
     },
 
     computed: {
-        ...mapState(useCarStore, ['isAddModel']),
+        ...mapState(useCarStore, ['openAddCarModel']),
 
         buttonName() {
-            return this.isAddModel ? 'Submit' : 'Update';
+            return this.openAddCarModel ? 'Submit' : 'Update';
         }
     },
 
@@ -89,7 +89,7 @@ export default {
         },
 
         submitForm() {
-            if (this.isAddModel) {
+            if (this.openAddCarModel) {
                 this.carsData()
                 this.addCarFormData(this.carData);
             } else {

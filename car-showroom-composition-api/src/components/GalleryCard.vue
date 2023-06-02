@@ -34,7 +34,7 @@
 
                                 <div class="delete-icon">
                                     <button class="bi bi-trash" id="delete-icon"
-                                        @click.prevent="deleteCarData(item.id, item.name)"></button>
+                                        @click.prevent="deleteData(item.id, item.name)"></button>
                                 </div>
                             </div>
                         </div>

@@ -7,8 +7,8 @@ const useCarStore = defineStore("api", {
       carDetail: [],
       getCarsData: [],
       deleteData: true,
-      isAddModel: true,
-      openEditModel: false,
+      openAddCarModel: true,
+      openEditCarModel: false,
     };
   },
 
@@ -32,7 +32,7 @@ const useCarStore = defineStore("api", {
         .then((response) => {
           this.showData = response.data.data;
         })
-        .catch((error) => alert("Couldn't Show The Data... Please try Again"));
+        .catch(() => alert("Couldn't Show The Data... Please try Again"));
     },
 
     // GET Method by ID - Axios API
@@ -51,20 +51,18 @@ const useCarStore = defineStore("api", {
     addCarFormData(carData) {
       axios
         .post(`${import.meta.env.VITE_CAR_API}`, carData)
-        .then((response) => {
+        .then(() => {
           alert(`"Created Data"\n
         "Car Name is-" ${carData.name}, 
         "Car Description is- " ${carData.details}, 
         "Car Price is- " ${carData.price}, 
         "Car URL is- " ${carData.image}`);
           this.carsData();
-          this.isAddModel = false;
-          this.openEditModel = false;
-
-          console.log(123);
+          this.openAddCarModel = false;
+          this.openEditCarModel = false;
         })
 
-        .catch((error) => {
+        .catch(() => {
           alert("Couldn't Add The Car... Please try Again");
         });
     },
@@ -85,7 +83,7 @@ const useCarStore = defineStore("api", {
                   "Car Price is- " ${carData.price}, 
                   "Car URL is- " ${carData.image}`);
           this.carsData();
-          this.openEditModel = false;
+          this.openEditCarModel = false;
         })
         .catch(() => {
           alert("Couldn't Edit the Data... Please try Again");
@@ -104,7 +102,7 @@ const useCarStore = defineStore("api", {
           .then((response) => {
             this.carsData();
           })
-          .catch((error) => {
+          .catch(() => {
             alert("Couldn't Delete The Data... Please try Again");
           });
       }

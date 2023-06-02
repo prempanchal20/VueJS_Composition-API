@@ -5,8 +5,8 @@
         </ul>
         <GalleryCard @editData="editData" />
 
-        <CarForm v-if="openEditModel" :openEditModel="openEditModel" :isAddModel="isAddModel" :editCar="editCar"
-            @onCancel="onCancel" />
+        <CarForm v-if="openEditCarModel" :openEditCarModel="openEditCarModel" :openAddCarModel="openAddCarModel"
+            :editCar="editCar" @onCancel="onCancel" />
     </section>
 </template>
 
@@ -30,7 +30,7 @@ export default {
         };
     },
     computed: {
-        ...mapWritableState(useCarStore, ['openEditModel', 'isAddModel']),
+        ...mapWritableState(useCarStore, ['openEditCarModel', 'openAddCarModel']),
     },
 
     created() {
@@ -42,19 +42,19 @@ export default {
 
         editData(data) {
             this.editCar = data;
-            this.openEditModel = true;
-            this.isAddModel = false;
+            this.openEditCarModel = true;
+            this.openAddCarModel = false;
         },
 
         addCarBtn() {
-            this.openEditModel = true;
-            this.isAddModel = true;
+            this.openEditCarModel = true;
+            this.openAddCarModel = true;
             this.editCar = {}
         },
 
         onCancel() {
-            this.isAddModel = false;
-            this.openEditModel = false;
+            this.openAddCarModel = false;
+            this.openEditCarModel = false;
         },
     },
 };
