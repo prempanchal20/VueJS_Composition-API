@@ -1,7 +1,7 @@
 <template>
     <section class="car-content">
         <transition-group name="car">
-            <div v-for="item in getShowData" :key="item.id">
+            <div v-for="item in showData" :key="item.id">
                 <div class="car-card">
                     <div class="car-box">
                         <div class="car-container">
@@ -45,12 +45,12 @@
     </section>
 </template>
 
-<script>
+<!-- Options API -->
+<!-- <script>
 import { mapActions, mapState } from 'pinia'
 import { useCarStore } from "../stores/carStore";
 
 export default {
-
     name: "GalleryCard",
     emits: ["editData"],
 
@@ -83,6 +83,46 @@ export default {
         },
     },
 };
+</script> -->
+
+
+<!-- Composition API -->
+<script setup>
+
+import { useCarStore } from "../stores/carStore";
+import { onMounted } from "vue";
+import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
+
+const carStore = useCarStore();
+const { showData } = storeToRefs(carStore)
+
+onMounted(() => {
+    carStore.carsData()
+})
+
+const truncatedDescription = (details) => {
+    let maxLength = 50;
+    if (details?.length > maxLength) {
+        return details?.slice(0, maxLength) + "...";
+    } else {
+        return details;
+    }
+}
+
+// const editData = (carData) => {
+//     emit("editData", carData);
+// }
+
+const deleteData = (itemID, itemName) => {
+    carStore.deleteData(itemID, itemName);
+}
+
+const router = useRouter();
+const navigateToRoute = () => {
+    router.push('CarDetails');
+};
+
 </script>
 
 <style>

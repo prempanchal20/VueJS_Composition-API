@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+
 const useCarStore = defineStore("api", {
   state: () => {
     return {
@@ -24,7 +25,6 @@ const useCarStore = defineStore("api", {
 
   actions: {
     //----------------Axios APIs - GET, Post, Put, Delete----------------//
-
     // GET Method - Axios API
     carsData() {
       axios

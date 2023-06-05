@@ -40,7 +40,8 @@
     </section>
 </template>
 
-<script>
+<!-- Options API -->
+<!-- <script>
 import GalleryCard from "./GalleryCard.vue";
 import { ErrorMessage } from "vee-validate";
 import { useCarStore } from "../stores/carStore";
@@ -98,6 +99,33 @@ export default {
         },
     },
 };
+</script> -->
+
+
+<!-- Composition API -->
+
+<script setup>
+
+import GalleryCard from "./GalleryCard.vue";
+import { ErrorMessage } from "vee-validate";
+import { useCarStore } from "../stores/carStore";
+import { reactive } from "vue";
+import { storeToRefs } from 'pinia';
+
+const schema = reactive({
+    name: "required|max:20",
+    details: "required|min:30|max:120",
+    url: "required|url",
+    price: "required",
+});
+
+const carData = reactive({
+    name: editCar.name || "",
+    price: editCar.price || "",
+    image: editCar.image || "",
+    details: editCar.details || "",
+    id: editCar.id,
+});
 </script>
 
 <style scoped>

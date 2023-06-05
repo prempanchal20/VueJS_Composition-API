@@ -32,7 +32,7 @@
 <script setup>
 import { ErrorMessage } from "vee-validate";
 import { useUserStore } from "../stores/userStore";
-import { reactive, computed } from 'vue';
+import { reactive } from 'vue';
 import { useRouter } from "vue-router";
 
 const userStore = useUserStore();
@@ -43,9 +43,6 @@ const loginSchema = reactive({
     email: "required|email",
     password: "required|min:8|max:12|regex:^(?=.*\\d)(?=.*[^\\w\\d\\s]).+$",
 });
-
-const { userValid } = useUserStore();
-const computedUserValid = computed(() => { return userValid });
 
 const loginUserData = reactive({
     loginUserData: {},

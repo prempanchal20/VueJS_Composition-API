@@ -9,12 +9,6 @@
     </section>
 </template>
 
-<script>
-export default {
-    name: "App",
-};
-</script>
-
 <style>
 .fonts {
     font-family: 'Poppins', sans-serif;
