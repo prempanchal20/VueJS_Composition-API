@@ -28,39 +28,37 @@
     </section>
 </template>
 
-<script>
-import { useUserStore } from "../stores/userStore";
+<!-- Composition API -->
+<script setup>
 import { ErrorMessage } from "vee-validate";
-import { mapActions, mapWritableState } from 'pinia'
+import { useUserStore } from "../stores/userStore";
+import { reactive, computed } from 'vue';
+import { useRouter } from "vue-router";
 
-export default {
-    name: "LoginForm",
+const userStore = useUserStore();
+const { checkUser } = userStore;
+const router = useRouter();
 
-    data: () => {
-        return {
-            loginSchema: {
-                email: "required|email",
-                password: "required|min:8|max:12|regex:^(?=.*\\d)(?=.*[^\\w\\d\\s]).+$",
-            },
-            loginUserData: {},
-        };
-    },
-    computed: {
-        ...mapWritableState(useUserStore, ['userValid'])
-    },
-    methods: {
-        ...mapActions(useUserStore, ['checkUser']),
+const loginSchema = reactive({
+    email: "required|email",
+    password: "required|min:8|max:12|regex:^(?=.*\\d)(?=.*[^\\w\\d\\s]).+$",
+});
 
-        async user() {
-            const response = await this.checkUser(this.loginUserData)
-            if (response) {
-                this.$router.push({
-                    name: "Home",
-                });
-            }
-        }
-    },
-};
+const { userValid } = useUserStore();
+const computedUserValid = computed(() => { return userValid });
+
+const loginUserData = reactive({
+    loginUserData: {},
+})
+
+const user = async () => {
+    const response = await checkUser(loginUserData);
+    if (response) {
+        router.push({
+            name: "Home",
+        })
+    }
+}
 </script>
 
 <style scoped>

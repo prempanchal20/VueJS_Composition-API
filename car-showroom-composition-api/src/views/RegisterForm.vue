@@ -61,56 +61,55 @@
     </section>
 </template>
 
-<script>
+<!-- Composition API -->
+<script setup>
 import { ErrorMessage } from "vee-validate";
-import { mapActions } from 'pinia'
-import { useUserStore } from '../stores/userStore'
+import { useUserStore } from "../stores/userStore";
+import { reactive } from 'vue';
+import { useRouter } from "vue-router";
 
-export default {
-    name: "RegisterForm",
+const userStore = useUserStore();
+const { registerUser } = userStore;
+const router = useRouter();
 
-    data() {
-        return {
-            registerSchema: {
-                name: "required",
-                email: "required|email",
-                password: "required|min:8|max:12|regex:^(?=.*\\d)(?=.*[^\\w\\d\\s]).+$",
-                confirmation: "required|confirmed:@password",
-                role: "required",
-                gender: "required",
-                age: "required|min_value:1|age",
-                dob: "required"
-            },
+const registerSchema = reactive({
+    name: "required",
+    email: "required|email",
+    password: "required|min:8|max:12|regex:^(?=.*\\d)(?=.*[^\\w\\d\\s]).+$",
+    confirmation: "required|confirmed:@password",
+    role: "required",
+    gender: "required",
+    age: "required|min_value:1|age",
+    dob: "required"
+});
 
-            userData: {
-                name: "",
-                email: "",
-                password: "",
-                role: "",
-                gender: "",
-                age: "",
-                dob: "",
-            },
-        };
+const userData = reactive({
+    initialValues: {
+        name: "",
+        email: "",
+        password: "",
+        confirmation: "",
+        role: "",
+        gender: "",
+        age: "",
+        dob: "",
     },
+    validationSchema: registerSchema,
+    validateOnMount: false,
+})
 
-    methods: {
-        getCurrentDate() {
-            const today = new Date();
-            return today.toISOString().split('T')[0];
-        },
+const getCurrentDate = () => {
+    const today = new Date()
+    return today.toISOString().split('T')[0]
+}
 
-        ...mapActions(useUserStore, ["registerUser"]),
-
-        async registerUserData() {
-            const response = await this.registerUser(this.userData);
-            if (response.status == 201) {
-                this.$router.push({
-                    name: "Login",
-                });
-            }
-        },
-    },
+const registerUserData = async () => {
+    const response = await registerUser(userData)
+    if (response.status == 201) {
+        router.push({
+            name: "Login",
+        })
+    }
 }
 </script>
 
