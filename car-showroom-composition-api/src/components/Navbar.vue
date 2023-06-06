@@ -17,7 +17,7 @@
   </section>
 </template>
 
-
+<!-- Options API -->
 <!-- <script>
 import { mapWritableState, mapActions, mapState } from "pinia";
 import { RouterLink } from "vue-router";
@@ -46,16 +46,17 @@ export default {
 
 <!-- Composition API -->
 <script setup>
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import { useUserStore } from "../stores/userStore";
 
-const userStore = useUserStore();
-const { logout } = userStore;
+const { userValid, logout } = useUserStore();
 
-const logoutBtn = async () => {
-  const response = await logout();
+const router = useRouter()
+
+const logoutBtn = () => {
+  const response = logout();
   if (response) {
-    this.$router.push("/login");
+    router.push("/login");
   }
 }
 </script>

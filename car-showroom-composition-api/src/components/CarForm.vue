@@ -28,7 +28,7 @@
                     <ErrorMessage class="error-text" name="url" />
 
                     <div class="button">
-                        <button type="reset" class="reset" @click="onCancel">Cancel</button>
+                        <button type="reset" class="reset" @click="closeForm">Cancel</button>
 
                         <button type="submit" class="submit">
                             {{ buttonName }}
@@ -40,93 +40,47 @@
     </section>
 </template>
 
-<!-- Options API -->
-<!-- <script>
-import GalleryCard from "./GalleryCard.vue";
-import { ErrorMessage } from "vee-validate";
-import { useCarStore } from "../stores/carStore";
-import { mapActions, mapState } from "pinia";
-
-export default {
-    name: "CarForm",
-    components: {
-        GalleryCard,
-    },
-
-    data() {
-        return {
-            schema: {
-                name: "required|max:20",
-                details: "required|min:30|max:120",
-                url: "required|url",
-                price: "required",
-            },
-
-            carData: {
-                name: this.editCar.name || "",
-                price: this.editCar.price || "",
-                image: this.editCar.image || "",
-                details: this.editCar.details || "",
-                id: this.editCar.id,
-            },
-        };
-    },
-
-    computed: {
-        ...mapState(useCarStore, ['openAddCarModel']),
-
-        buttonName() {
-            return this.openAddCarModel ? 'Submit' : 'Update';
-        }
-    },
-
-    props: ["editCar", "editData"],
-
-    methods: {
-        ...mapActions(useCarStore, ['carsData', 'addCarFormData', 'editCarFormData']),
-
-        onCancel() {
-            this.$emit("onCancel");
-        },
-
-        submitForm() {
-            if (this.openAddCarModel) {
-                this.carsData()
-                this.addCarFormData(this.carData);
-            } else {
-                this.editCarFormData(this.carData);
-            }
-        },
-    },
-};
-</script> -->
-
-
 <!-- Composition API -->
-
 <script setup>
-
-import GalleryCard from "./GalleryCard.vue";
+import { ref, defineEmits } from "vue";
 import { ErrorMessage } from "vee-validate";
 import { useCarStore } from "../stores/carStore";
 import { reactive } from "vue";
-import { storeToRefs } from 'pinia';
 
-const schema = reactive({
+const carStore = useCarStore();
+const schema = {
     name: "required|max:20",
     details: "required|min:30|max:120",
     url: "required|url",
     price: "required",
-});
+};
 
 const carData = reactive({
-    name: editCar.name || "",
-    price: editCar.price || "",
-    image: editCar.image || "",
-    details: editCar.details || "",
-    id: editCar.id,
-});
+    name: props.editCar.name || "",
+    price: props.editCar.price || "",
+    image: props.editCar.image || "",
+    details: props.editCar.details || "",
+    id: props.editCar.id,
+})
+
+const props = defineProps(['openEditCarModel', 'openAddCarModel', 'editCar'])
+const buttonName = ref(props.openAddCarModel ? "Submit" : "Update");
+
+const emit = defineEmits(['onCancel'])
+const closeForm = () => {
+    emit('onCancel')
+}
+
+const submitForm = () => {
+    if (props.openAddCarModel) {
+        carStore.carsData();
+        carStore.addCarFormData(carData);
+    } else {
+        carStore.editCarFormData(carData);
+    }
+};
 </script>
+
 
 <style scoped>
 * {

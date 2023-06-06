@@ -19,7 +19,6 @@ const routes = [
   { path: "/login", component: LoginForm, name: "Login" },
   { path: "/:pathMatch(.*)*", name: "carDetails", component: NotFound },
 
-  // Dynamic Route
   {
     path: "/details/:id",
     meta: { private: true },

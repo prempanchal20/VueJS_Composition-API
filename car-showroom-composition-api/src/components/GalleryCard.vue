@@ -19,7 +19,7 @@
 
                             <div class="buttons-icon">
                                 <div class="edit-icon">
-                                    <button class="bi bi-pencil" id="edit-icon" @click.prevent="editData(item)"></button>
+                                    <button class="bi bi-pencil" id="edit-icon" @click.prevent="editForm(item)"></button>
                                 </div>
 
                                 <div class="info-button">
@@ -45,53 +45,10 @@
     </section>
 </template>
 
-<!-- Options API -->
-<!-- <script>
-import { mapActions, mapState } from 'pinia'
-import { useCarStore } from "../stores/carStore";
-
-export default {
-    name: "GalleryCard",
-    emits: ["editData"],
-
-    computed: {
-        ...mapState(useCarStore, ['getShowData'])
-    },
-
-    methods: {
-        ...mapActions(useCarStore, ["editCarFormData", 'deleteData']),
-
-        truncatedDescription(details) {
-            let maxLength = 50;
-            if (details?.length > maxLength) {
-                return details?.slice(0, maxLength) + "...";
-            } else {
-                return details;
-            }
-        },
-
-        editData(carData) {
-            this.$emit("editData", carData);
-        },
-
-        deleteCarData(itemID, itemName) {
-            this.deleteData(itemID, itemName);
-        },
-
-        navigateToRoute() {
-            this.$router.push("/CarDetails");
-        },
-    },
-};
-</script> -->
-
-
 <!-- Composition API -->
 <script setup>
-
 import { useCarStore } from "../stores/carStore";
-import { onMounted } from "vue";
-import { useRouter } from 'vue-router';
+import { onMounted, defineEmits } from "vue";
 import { storeToRefs } from 'pinia';
 
 const carStore = useCarStore();
@@ -103,26 +60,21 @@ onMounted(() => {
 
 const truncatedDescription = (details) => {
     let maxLength = 50;
-    if (details?.length > maxLength) {
-        return details?.slice(0, maxLength) + "...";
+    if (typeof details === 'string' && details.length > maxLength) {
+        return details.slice(0, maxLength) + "...";
     } else {
         return details;
     }
-}
+};
 
-// const editData = (carData) => {
-//     emit("editData", carData);
-// }
+const emit = defineEmits(["editData"]);
+const editForm = (item) => {
+    emit('editData', item)
+}
 
 const deleteData = (itemID, itemName) => {
     carStore.deleteData(itemID, itemName);
 }
-
-const router = useRouter();
-const navigateToRoute = () => {
-    router.push('CarDetails');
-};
-
 </script>
 
 <style>

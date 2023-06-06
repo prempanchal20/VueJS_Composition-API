@@ -1,49 +1,51 @@
 <template>
     <section>
         <button class="back-btn" @click="goBack">Back</button>
-        <div class="car-data">
+        <div class="car-data" v-if="carDetail">
             <div class="car-image-container">
-                <img :src="getCarDetail.image" :alt="carDetail.name" class="car-image">
+                <img v-if="carDetail.image" :src="carDetail.image" :alt="carDetail.name" class="car-image">
             </div>
             <div class="car-info">
                 <div class="car-name">
-                    <h1>Car Name: {{ getCarDetail.name }}</h1>
+                    <h1>Car Name: {{ carDetail.name }}</h1>
                 </div>
                 <div class="car-details">
-                    <h3>Details: {{ getCarDetail.details }}</h3>
+                    <h3>Details: {{ carDetail.details }}</h3>
                 </div>
                 <div class="car-price">
-                    <h3>Price: ₹{{ getCarDetail.price }}</h3>
+                    <h3>Price: ₹{{ carDetail.price }}</h3>
                 </div>
             </div>
         </div>
     </section>
 </template>
   
-<script>
-import { mapState, mapActions } from 'pinia'
+<!-- Composition API -->
+<script setup>
+import { useRoute, useRouter } from 'vue-router';
 import { useCarStore } from "../stores/carStore";
-export default {
+import { storeToRefs } from 'pinia';
 
-    created() {
-        this.getCarbyID(this.$route.params.id);
-    },
+const route = useRoute();
+const router = useRouter();
+const carStore = useCarStore();
 
-    computed: {
-        ...mapState(useCarStore, ['carDetail', 'getCarDetail'])
-    },
+const getCarbyID = (id) => {
+    try {
+        carStore.getCarbyID(id);
+    } catch (error) {
+        alert(error);
+    }
+};
 
-    methods: {
+const { carDetail } = storeToRefs(carStore)
 
-        goBack() {
-            this.$router.push('/home');
-        },
+getCarbyID(route.params.id);
 
-        ...mapActions(useCarStore, ['getCarbyID']),
-    },
+const goBack = () => {
+    router.push('/home');
 };
 </script>
-
 
 <style scoped>
 * {

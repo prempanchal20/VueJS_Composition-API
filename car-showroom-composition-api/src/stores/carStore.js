@@ -99,7 +99,7 @@ const useCarStore = defineStore("api", {
       if (deleteAlert == true) {
         axios
           .delete(`${import.meta.env.VITE_CAR_API}/${itemId}`)
-          .then((response) => {
+          .then(() => {
             this.carsData();
           })
           .catch(() => {
