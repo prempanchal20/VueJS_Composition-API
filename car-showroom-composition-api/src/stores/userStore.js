@@ -5,16 +5,14 @@ export const useUserStore = defineStore("user", {
   state: () => {
     return {
       userValid: JSON.parse(localStorage.getItem("loggedIn")),
+      userURL: import.meta.env.VITE_USER_API,
     };
   },
   actions: {
     //---------- Axios API - Register User-------------//
     async registerUser(userData) {
       try {
-        const response = await axios.post(
-          `${import.meta.env.VITE_USER_API}`,
-          userData
-        );
+        const response = await axios.post(this.userURL, userData);
         if (response.status === 201) {
           alert(`User ${userData.name} Registered Successfully `);
         }
@@ -41,7 +39,7 @@ export const useUserStore = defineStore("user", {
     // GET User method - Axios API
     async checkUser(loginUserData) {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_USER_API}`);
+        const response = await axios.get(this.userURL);
         const data = await response.data.data;
 
         if (response.status == 200) {

@@ -10,6 +10,7 @@ const useCarStore = defineStore("api", {
       deleteData: true,
       openAddCarModel: true,
       openEditCarModel: false,
+      carURL: import.meta.env.VITE_CAR_API,
     };
   },
 
@@ -29,7 +30,7 @@ const useCarStore = defineStore("api", {
     // GET Method - Axios API
     carsData() {
       axios
-        .get(`${import.meta.env.VITE_CAR_API}`)
+        .get(this.carURL)
         .then((response) => {
           this.showData = response.data.data;
         })
@@ -39,7 +40,8 @@ const useCarStore = defineStore("api", {
     // GET Method by ID - Axios API
     getCarbyID(carID) {
       axios
-        .get(`${import.meta.env.VITE_CAR_API}/${carID}`)
+        .get(`${this.carURL}/${carID}`)
+
         .then((response) => {
           this.carDetail = response.data;
         })
@@ -51,7 +53,7 @@ const useCarStore = defineStore("api", {
     // Post Method - Axios API
     addCarFormData(carData) {
       axios
-        .post(`${import.meta.env.VITE_CAR_API}`, carData)
+        .post(this.carURL, carData)
         .then(() => {
           alert(`"Created Data"\n
         "Car Name is-" ${carData.name}, 
@@ -71,7 +73,7 @@ const useCarStore = defineStore("api", {
     // Put Method - Axios API
     editCarFormData(carData) {
       axios
-        .put(`${import.meta.env.VITE_CAR_API}/${carData.id}`, {
+        .put(`${this.carURL}/${carData.id}`, {
           name: carData.name,
           price: carData.price,
           image: carData.image,
@@ -79,10 +81,10 @@ const useCarStore = defineStore("api", {
         })
         .then(() => {
           alert(`"Edited Data"\n
-                  "Car Name is-" ${carData.name}, 
-                  "Car Description is- " ${carData.details}, 
-                  "Car Price is- " ${carData.price}, 
-                  "Car URL is- " ${carData.image}`);
+              "Car Name is-" ${carData.name}, 
+              "Car Description is- " ${carData.details}, 
+              "Car Price is- " ${carData.price}, 
+              "Car URL is- " ${carData.image}`);
           this.carsData();
           this.openEditCarModel = false;
         })
@@ -90,7 +92,6 @@ const useCarStore = defineStore("api", {
           alert("Couldn't Edit the Data... Please try Again");
         });
     },
-
     // DELETE Method - Axios API
     deleteData(itemId, itemName) {
       const deleteAlert = window.confirm(
@@ -99,7 +100,7 @@ const useCarStore = defineStore("api", {
 
       if (deleteAlert == true) {
         axios
-          .delete(`${import.meta.env.VITE_CAR_API}/${itemId}`)
+          .delete(`${this.carURL} / ${itemId}`)
           .then(() => {
             this.carsData();
           })
