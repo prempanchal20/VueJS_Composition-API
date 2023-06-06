@@ -24,10 +24,11 @@ export const useUserStore = defineStore("user", {
         alert("User is not Register... Please try Again");
       }
     },
-    async logout() {
+
+    logout() {
       try {
         const logoutAlert = window.confirm(`Are You Sure Want to Logout..?`);
-        if (logoutAlert == true) {
+        if (logoutAlert === true) {
           this.userValid = false;
           localStorage.setItem("loggedIn", false);
           return logoutAlert;

@@ -16,46 +16,20 @@
     </div>
   </section>
 </template>
-
-<!-- Options API -->
-<!-- <script>
-import { mapWritableState, mapActions, mapState } from "pinia";
-import { RouterLink } from "vue-router";
-import { useUserStore } from "../stores/userStore";
-
-export default {
-  name: "Navbar",
-
-  computed: {
-    ...mapWritableState(useUserStore, ["login"]),
-    ...mapState(useUserStore, ['userValid']),
-  },
-
-  methods: {
-    ...mapActions(useUserStore, ["logout"]),
-
-    async logoutBtn() {
-      const response = await this.logout();
-      if (response) {
-        this.$router.push("/login");
-      }
-    }
-  }
-};
-</script> -->
-
+ 
 <!-- Composition API -->
 <script setup>
 import { RouterLink, useRouter } from "vue-router";
 import { useUserStore } from "../stores/userStore";
+import { storeToRefs } from 'pinia';
 
-const { userValid, logout } = useUserStore();
-
-const router = useRouter()
+const router = useRouter();
+const userStore = useUserStore();
+const { userValid } = storeToRefs(userStore)
 
 const logoutBtn = () => {
-  const response = logout();
-  if (response) {
+  const response = userStore.logout()
+  if (response === true) {
     router.push("/login");
   }
 }

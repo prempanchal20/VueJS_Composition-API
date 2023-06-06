@@ -12,7 +12,7 @@
 
 <!-- Composition API -->
 <script setup>
-import { reactive, toRefs, ref } from 'vue';
+import { reactive, toRefs } from 'vue';
 import CarForm from '../components/CarForm.vue';
 import GalleryCard from '../components/GalleryCard.vue';
 import { useCarStore } from '../stores/carStore';
@@ -28,6 +28,7 @@ const editForm = (item) => {
 };
 
 const addCarBtn = () => {
+    editDataItem = ""
     openEditCarModel.value = true;
     openAddCarModel.value = true;
 };
