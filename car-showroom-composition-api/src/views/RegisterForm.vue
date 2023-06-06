@@ -125,7 +125,7 @@ const registerUserData = async () => {
 
 h2 {
     text-align: center;
-    color: white;
+    color: #001f3f;
     margin-bottom: 5%;
 }
 
@@ -183,7 +183,7 @@ input[type="radio"] {
 }
 
 #register-form-details {
-    color: white;
+    color: #001f3f;
 }
 
 .error-text {

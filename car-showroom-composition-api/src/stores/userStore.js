@@ -6,6 +6,7 @@ export const useUserStore = defineStore("user", {
     return {
       userValid: JSON.parse(localStorage.getItem("loggedIn")),
       userURL: import.meta.env.VITE_USER_API,
+      userData: JSON.parse(localStorage.getItem("userData")) || "",
     };
   },
   actions: {
@@ -16,7 +17,6 @@ export const useUserStore = defineStore("user", {
         if (response.status === 201) {
           alert(`User ${userData.name} Registered Successfully `);
         }
-
         return response;
       } catch (error) {
         alert("User is not Register... Please try Again");
@@ -55,6 +55,9 @@ export const useUserStore = defineStore("user", {
           } else {
             alert(`Login Successfully..!!`);
             this.userValid = true;
+            this.userData = checkUserData;
+
+            localStorage.setItem("userData", JSON.stringify(checkUserData));
 
             // Backup Login Credentials incase above API does not work
             try {

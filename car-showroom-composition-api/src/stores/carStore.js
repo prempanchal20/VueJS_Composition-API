@@ -92,6 +92,7 @@ const useCarStore = defineStore("api", {
           alert("Couldn't Edit the Data... Please try Again");
         });
     },
+
     // DELETE Method - Axios API
     deleteData(itemId, itemName) {
       const deleteAlert = window.confirm(

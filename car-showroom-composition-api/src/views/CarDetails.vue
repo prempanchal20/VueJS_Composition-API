@@ -55,7 +55,7 @@ const goBack = () => {
 }
 
 .back-btn {
-    border: 1px solid white;
+    border: 1px solid #001f3f;
     background: transparent;
     cursor: pointer;
     margin-left: 10%;
@@ -69,7 +69,7 @@ const goBack = () => {
 .back-btn,
 .car-details,
 .car-price {
-    color: white;
+    color: #001f3f;
     margin-top: 30px;
     word-break: break-all;
 }
@@ -82,7 +82,7 @@ const goBack = () => {
     display: flex;
     width: 70%;
     margin: 0 auto;
-    border: 1px solid white;
+    border: 1px solid #001f3f;
     padding: 3%;
     box-shadow: inset 15px 15px 15px rgba(0, 0, 0, 0.2),
         inset -5px -5px 15px rgba(255, 255, 255, 0.1),

@@ -102,7 +102,7 @@ const submitForm = () => {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: #151418;
+    background-color: #001f3f;
     border-radius: 10px;
 }
 

@@ -70,7 +70,7 @@ const user = async () => {
 
 h2 {
     text-align: center;
-    color: white;
+    color: #001f3f;
 }
 
 label {
@@ -122,7 +122,7 @@ input[type="radio"] {
 }
 
 #login-form-details {
-    color: white;
+    color: #001f3f;
     margin-top: 20px;
 }
 

@@ -85,7 +85,7 @@ const deleteData = (itemID, itemName) => {
 }
 
 body {
-    background-color: #212a3e;
+    background-color: #F8F8F8;
 }
 
 .car-card {
@@ -174,6 +174,11 @@ body {
     padding: 6%;
 }
 
+.car-name h3,
+.description p {
+    color: #001f3f;
+}
+
 .car-content {
     display: flex;
     flex-wrap: wrap;
@@ -225,7 +230,7 @@ body {
 #delete-icon {
     background-color: transparent;
     font-size: 20px;
-    color: white;
+    color: #001f3f;
     border: none;
     cursor: pointer;
 }
@@ -236,12 +241,12 @@ body {
 }
 
 .menu button {
-    border: 1px solid white;
+    border: 1px solid #001f3f;
     border-radius: 8px;
     padding: 5px 15px;
     cursor: pointer;
     background-color: transparent;
-    color: white;
+    color: #001f3f;
     font-size: 20px;
     margin-right: 50px;
     margin-top: 20px;

@@ -7,6 +7,11 @@
 
       <div class="nav-menu">
         <div class="navbar-links">
+          <div class="user-name">
+            <button v-if="userValid" class="bi bi-person-circle"></button>
+            <h1 v-if="userValid">Welcome, <b>{{ userData.name }}</b></h1>
+          </div>
+
           <RouterLink v-if="userValid" class="home" to="/">Home</RouterLink>
           <RouterLink v-else class="login" to="/login">Login</RouterLink>
           <button v-if="userValid" @click="logoutBtn" class="logout-btn">Logout</button>
@@ -25,7 +30,7 @@ import { storeToRefs } from 'pinia';
 
 const router = useRouter();
 const userStore = useUserStore();
-const { userValid } = storeToRefs(userStore)
+const { userValid, userData } = storeToRefs(userStore)
 
 const logoutBtn = () => {
   const response = userStore.logout()
@@ -35,8 +40,7 @@ const logoutBtn = () => {
 }
 </script>
 
-
-<style >
+<style>
 * {
   padding: 0;
   margin: 0;
@@ -48,7 +52,7 @@ const logoutBtn = () => {
 .navbar {
   position: sticky;
   top: 0;
-  background-color: #334756;
+  background-color: #001f3f;
   z-index: 1;
 }
 
@@ -62,7 +66,7 @@ const logoutBtn = () => {
 .navbar-logo button {
   border: none;
   background-color: transparent;
-  color: white;
+  color: #F8F8F8;
   font-size: 25px;
   font-weight: 600;
 }
@@ -70,6 +74,10 @@ const logoutBtn = () => {
 .navbar-links {
   display: flex;
   justify-content: flex-end;
+}
+
+.user-name {
+  display: flex;
 }
 
 .navbar-links button {
@@ -88,6 +96,12 @@ const logoutBtn = () => {
   font-size: 20px;
   color: white;
   padding-left: 30px;
+}
+
+.navbar-links h1 {
+  color: white;
+  font-weight: 100;
+  margin-left: 10px;
 }
 
 @media only screen and (max-width: 950px) {
