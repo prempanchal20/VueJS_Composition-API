@@ -45,14 +45,13 @@
             </div>
             <ErrorMessage class="error-text" name="gender" />
 
+            <label for="dob">Date of Birth:</label>
+            <vee-field type="date" id="dob" name="dob" v-model="userData.dob" :max="getCurrentDate()" @change="userAge" />
+            <ErrorMessage class="error-text" name="dob" />
+
             <label for="age">Age:</label>
             <vee-field type="number" id="age" name="age" placeholder="Enter your Age" v-model="userData.age" />
             <ErrorMessage class="error-text" name="age" />
-
-            <label for="dob">Date of Birth:</label>
-            <vee-field type="date" id="dob" name="dob" v-model="userData.dob" :max="getCurrentDate()" />
-
-            <ErrorMessage class="error-text" name="dob" />
 
             <div class="buttons">
                 <button type="submit" class="register-btn">Register</button>
@@ -91,7 +90,7 @@ const userData = reactive({
         confirmation: "",
         role: "",
         gender: "",
-        age: "",
+        age: null,
         dob: "",
     },
     validationSchema: registerSchema,
@@ -102,6 +101,15 @@ const getCurrentDate = () => {
     const today = new Date()
     return today.toISOString().split('T')[0]
 }
+
+const userAge = (e) => {
+    let date = new Date(e.target.value);
+    let month_diff = Date.now() - date.getTime();
+    let age_dt = new Date(month_diff);
+    let year = age_dt.getUTCFullYear();
+    let age = Math.abs(year - 1970);
+    userData.age = age;
+};
 
 const registerUserData = async () => {
     const response = await registerUser(userData)
@@ -121,7 +129,9 @@ const registerUserData = async () => {
     border: 1px solid #ccc;
     margin-top: 5%;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
+
 
 h2 {
     text-align: center;

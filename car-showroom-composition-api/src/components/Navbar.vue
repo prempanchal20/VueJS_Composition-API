@@ -20,8 +20,9 @@
       </div>
     </div>
   </section>
-</template>
- 
+</template> 
+
+
 <!-- Composition API -->
 <script setup>
 import { RouterLink, useRouter } from "vue-router";
@@ -108,7 +109,6 @@ const logoutBtn = () => {
 
   .button-home {
     width: 40%;
-
   }
 
   .navbar-logo {
@@ -130,5 +130,9 @@ const logoutBtn = () => {
     font-size: 16px;
   }
 
+  .user-name {
+    font-size: 14px;
+  }
+
 }
-</style> 
+</style>

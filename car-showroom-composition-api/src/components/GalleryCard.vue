@@ -1,47 +1,55 @@
 <template>
-    <section class="car-content">
-        <transition-group name="car">
-            <div v-for="item in showData" :key="item.id">
-                <div class="car-card">
-                    <div class="car-box">
-                        <div class="car-container">
-                            <div class="car-images">
-                                <img :src="item.image" alt="car - image" />
-                            </div>
+    <section>
+        <div class="no-car-image" v-if="showData.length === 0">
+            <img src="../assets/no-car.png" alt="no-car image">
+        </div>
 
-                            <div class="car-name">
-                                <h3>{{ item.name }}</h3>
-                            </div>
-
-                            <div class="description">
-                                <p>{{ truncatedDescription(item.details) }}</p>
-                            </div>
-
-                            <div class="buttons-icon">
-                                <div class="edit-icon">
-                                    <button class="bi bi-pencil" id="edit-icon" @click.prevent="editForm(item)"></button>
+        <div class="car-content">
+            <transition-group name="car">
+                <div v-for="item in showData" :key="item.id">
+                    <div class="car-card">
+                        <div class="car-box">
+                            <div class="car-container">
+                                <div class="car-images">
+                                    <img :src="item.image" alt="car - image" />
                                 </div>
 
-                                <div class="info-button">
-                                    <button v-if="item.price === ''" class="avilable-btn">
-                                        Available Soon
-                                    </button>
-
-                                    <RouterLink :to="{ name: 'details', params: { id: item.id } }" v-else class="info-btn">
-                                        Info
-                                    </RouterLink>
+                                <div class="car-name">
+                                    <h3>{{ item.name }}</h3>
                                 </div>
 
-                                <div class="delete-icon">
-                                    <button class="bi bi-trash" id="delete-icon"
-                                        @click.prevent="deleteData(item.id, item.name)"></button>
+                                <div class="description">
+                                    <p>{{ truncatedDescription(item.details) }}</p>
+                                </div>
+
+                                <div class="buttons-icon">
+                                    <div class="edit-icon">
+                                        <button class="bi bi-pencil" id="edit-icon"
+                                            @click.prevent="editForm(item)"></button>
+                                    </div>
+
+                                    <div class="info-button">
+                                        <button v-if="item.price === ''" class="avilable-btn">
+                                            Available Soon
+                                        </button>
+
+                                        <RouterLink :to="{ name: 'details', params: { id: item.id } }" v-else
+                                            class="info-btn">
+                                            Info
+                                        </RouterLink>
+                                    </div>
+
+                                    <div class="delete-icon">
+                                        <button class="bi bi-trash" id="delete-icon"
+                                            @click.prevent="deleteData(item.id, item.name)"></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </transition-group>
+            </transition-group>
+        </div>
     </section>
 </template>
 
@@ -255,12 +263,16 @@ body {
 
 .car-enter-active,
 .car-leave-active {
-    transition: all 0.8s ease-in;
+    transition: all 0.5s ease-in;
 }
 
 .car-enter-from,
 .car-leave-to {
     opacity: 1;
     transform: translateY(100px);
+}
+
+.no-car-image {
+    margin-top: 45%;
 }
 </style>
