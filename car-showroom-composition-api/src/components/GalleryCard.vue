@@ -1,10 +1,14 @@
 <template>
     <section>
-        <div class="no-car-image" v-if="showData.length === 0">
-            <img src="../assets/no-car.png" alt="no-car image">
+        <div v-show="loading" class="loader">
+            <img src="../assets/loader.gif" alt="loader" />
         </div>
 
-        <div class="car-content">
+        <div class="no-car-image" v-if="showData.length === 0">
+            <img src="../assets/no-car.png" alt="no-car image" />
+        </div>
+
+        <div class="car-content" v-if="!loading">
             <transition-group name="car">
                 <div v-for="item in showData" :key="item.id">
                     <div class="car-card">
@@ -56,19 +60,23 @@
 <!-- Composition API -->
 <script setup>
 import { useCarStore } from "../stores/carStore";
-import { onMounted, defineEmits } from "vue";
-import { storeToRefs } from 'pinia';
+import { onMounted, defineEmits, ref } from "vue";
+import { storeToRefs } from "pinia";
 
 const carStore = useCarStore();
-const { showData } = storeToRefs(carStore)
+const { showData } = storeToRefs(carStore);
+const loading = ref(true);
 
 onMounted(() => {
-    carStore.carsData()
-})
+    setTimeout(() => {
+        loading.value = false;
+    }, 1000);
+    carStore.carsData();
+});
 
 const truncatedDescription = (details) => {
     let maxLength = 50;
-    if (typeof details === 'string' && details.length > maxLength) {
+    if (typeof details === "string" && details.length > maxLength) {
         return details.slice(0, maxLength) + "...";
     } else {
         return details;
@@ -77,12 +85,12 @@ const truncatedDescription = (details) => {
 
 const emit = defineEmits(["editData"]);
 const editForm = (item) => {
-    emit('editData', item)
-}
+    emit("editData", item);
+};
 
 const deleteData = (itemID, itemName) => {
     carStore.deleteData(itemID, itemName);
-}
+};
 </script>
 
 <style>
@@ -93,7 +101,7 @@ const deleteData = (itemID, itemName) => {
 }
 
 body {
-    background-color: #F8F8F8;
+    background-color: #f8f8f8;
 }
 
 .car-card {
@@ -260,7 +268,6 @@ body {
     margin-top: 20px;
 }
 
-
 .car-enter-active,
 .car-leave-active {
     transition: all 0.5s ease-in;
@@ -274,5 +281,15 @@ body {
 
 .no-car-image {
     margin-top: 45%;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.loader img {
+    width: 30%;
 }
 </style>

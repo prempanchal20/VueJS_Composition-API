@@ -102,12 +102,12 @@ const submitForm = () => {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: #001f3f;
+    background-color: white;
     border-radius: 10px;
 }
 
 .modal-content {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #c7c0ae47;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -136,6 +136,7 @@ const submitForm = () => {
 
 label {
     margin-top: 10px;
+    color: black;
 }
 
 input[type="text"],
@@ -151,7 +152,7 @@ textarea {
 }
 
 button[type="submit"] {
-    background-color: #4caf50;
+    background-color: #34d339;
     color: white;
     padding: 10px;
     border: none;
@@ -163,7 +164,7 @@ button[type="submit"] {
 }
 
 button[type="reset"] {
-    background-color: rgb(209, 91, 91);
+    background-color: rgb(220, 52, 52);
     color: white;
     padding: 10px;
     border: none;
@@ -182,7 +183,7 @@ button[type="reset"] {
 }
 
 h2 {
-    color: white;
+    color: black;
     text-align: center;
 }
 

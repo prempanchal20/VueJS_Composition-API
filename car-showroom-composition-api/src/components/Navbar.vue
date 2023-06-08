@@ -9,7 +9,13 @@
         <div class="navbar-links">
           <div class="user-name">
             <button v-if="userValid" class="bi bi-person-circle"></button>
-            <h1 v-if="userValid">Welcome, <b>{{ userData.name }}</b></h1>
+            <h1 v-if="userValid">Welcome, <b>{{ userData.name }}</b><i class="bi bi-chevron-down"
+                @click="toggleUserData"></i></h1>
+            <ul v-if="showUserData" class="user-data-list">
+              <li><i class="bi bi-person"></i>{{ userData.name }}</li>
+              <li><i class="bi bi-envelope"></i>{{ userData.email }}</li>
+              <li @click="changePassword"><i class="bi bi-key"></i>Change Password</li>
+            </ul>
           </div>
 
           <RouterLink v-if="userValid" class="home" to="/">Home</RouterLink>
@@ -20,7 +26,7 @@
       </div>
     </div>
   </section>
-</template> 
+</template>
 
 
 <!-- Composition API -->
@@ -28,16 +34,27 @@
 import { RouterLink, useRouter } from "vue-router";
 import { useUserStore } from "../stores/userStore";
 import { storeToRefs } from 'pinia';
+import { ref } from 'vue';
 
 const router = useRouter();
 const userStore = useUserStore();
 const { userValid, userData } = storeToRefs(userStore)
+const showUserData = ref(false);
+
+
+const toggleUserData = () => {
+  showUserData.value = !showUserData.value;
+};
 
 const logoutBtn = () => {
   const response = userStore.logout()
   if (response === true) {
     router.push("/login");
   }
+}
+
+const changePassword = () => {
+  alert('This Feature will be Avaliable Soon')
 }
 </script>
 
@@ -103,6 +120,36 @@ const logoutBtn = () => {
   color: white;
   font-weight: 100;
   margin-left: 10px;
+}
+
+.bi-person,
+.bi-envelope,
+.bi-key {
+  margin-right: 10px;
+  color: #001f3f;
+}
+
+.user-data-list {
+  position: absolute;
+  top: 100%;
+  right: 11%;
+  display: none;
+  background-color: white;
+  padding: 10px;
+  list-style-type: none;
+}
+
+.user-name .user-data-list {
+  display: block;
+}
+
+.user-data-list li {
+  margin-top: 10px;
+}
+
+.bi-chevron-down {
+  font-size: 15px;
+  margin-left: 5px;
 }
 
 @media only screen and (max-width: 950px) {
