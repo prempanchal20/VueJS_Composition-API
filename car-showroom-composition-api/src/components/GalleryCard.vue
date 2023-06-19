@@ -1,4 +1,4 @@
-<template>
+<template v-slot:activator="{ props }">
     <section>
         <div v-show="loading" class="loader">
             <img src="../assets/loader.gif" alt="loader" />
@@ -33,12 +33,7 @@
                                     </div>
 
                                     <div class="info-button">
-                                        <button v-if="item.price === ''" class="avilable-btn">
-                                            Available Soon
-                                        </button>
-
-                                        <RouterLink :to="{ name: 'details', params: { id: item.id } }" v-else
-                                            class="info-btn">
+                                        <RouterLink :to="{ name: 'details', params: { id: item.id } }" class="info-btn">
                                             {{ $t("info") }}
                                         </RouterLink>
                                     </div>
@@ -215,10 +210,6 @@ body {
     font-size: 15px;
 }
 
-.avilable-btn {
-    font-size: 15px;
-}
-
 .button {
     position: relative;
     top: 1px;
@@ -228,11 +219,6 @@ body {
 .description {
     height: 10%;
     width: 100%;
-}
-
-.button .avilable-btn {
-    background-color: #1e1f23;
-    cursor: pointer;
 }
 
 .icons {

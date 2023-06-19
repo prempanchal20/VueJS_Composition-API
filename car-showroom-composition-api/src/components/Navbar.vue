@@ -9,7 +9,7 @@
         <div class="navbar-links">
           <div class="user-name">
             <button v-if="userValid" class="bi bi-person-circle"></button>
-            <h1 v-if="userValid">Welcome, <b>{{ userData.name }}</b></h1>
+            <h1 v-if="userValid">Welcome <b>{{ userData.name }}</b></h1>
           </div>
 
           <RouterLink v-if="userValid" class="home" to="/">{{ $t("home") }}</RouterLink>

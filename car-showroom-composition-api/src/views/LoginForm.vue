@@ -6,24 +6,24 @@
             </div>
 
             <vee-form id="login-form-details" :validation-schema="loginSchema" @submit="user">
-                <label for="email">Email:</label>
+                <label for="email">Email*:</label>
                 <vee-field type="email" id="email" name="email" placeholder="Enter your mail id"
                     v-model="loginUserData.email" />
                 <ErrorMessage class="error-text" name="email" />
 
-                <label for="password">Password:</label>
+                <label for="password">Password*:</label>
 
                 <vee-field type="password" id="password" name="password" placeholder="Enter your password"
                     v-model="loginUserData.password" />
                 <ErrorMessage class="error-text" name="password" />
-
+                <div class="required-field">* indicates that field are required</div>
                 <div class="buttons">
-
-                    <button type="submit" class="login-btn">
-                        Login
-                    </button>
+                    <v-btn color="success" class="login-btn" type="submit">Login</v-btn>
                 </div>
             </vee-form>
+        </div>
+        <div class="redirect">
+            <p>New User Then <a href="/register">Register</a> Here</p>
         </div>
     </section>
 </template>
@@ -105,6 +105,7 @@ input[type="radio"] {
     width: 50%;
     padding: 10px 20px;
     border-radius: 10px;
+    margin-top: 7%;
 }
 
 .cancel-btn {
@@ -130,6 +131,16 @@ input[type="radio"] {
 
 .error-text {
     color: rgb(219, 81, 81);
+}
+
+.required-field,
+.redirect {
+    font-size: 15px;
+}
+
+.redirect {
+    text-align: center;
+    margin-top: 20px;
 }
 
 /* Responsive Styles */

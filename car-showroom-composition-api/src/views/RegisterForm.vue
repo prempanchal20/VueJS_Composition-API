@@ -6,24 +6,24 @@
 
         <vee-form id="register-form-details" :validation-schema="registerSchema" @submit="registerUserData">
 
-            <label for="text">Name:</label>
+            <label for="text">Name*:</label>
             <vee-field type="name" id="name" name="name" placeholder="Enter your name" v-model="userData.name" />
             <ErrorMessage class="error-text" name="name" />
 
-            <label for="email">Email:</label>
+            <label for="email">Email*:</label>
             <vee-field type="email" id="email" name="email" placeholder="Enter your mail id" v-model="userData.email" />
             <ErrorMessage class="error-text" name="email" />
 
-            <label for="password">Password:</label>
+            <label for="password">Password*:</label>
             <vee-field type="password" id="password" name="password" placeholder="Enter your password"
                 v-model="userData.password" />
             <ErrorMessage class="error-text" name="password" />
 
-            <label for="password">Confirm Password:</label>
+            <label for="password">Confirm Password*:</label>
             <vee-field type="password" name="confirmation" placeholder="Confirm your password" />
             <ErrorMessage class="error-text" name="confirmation" />
 
-            <label for="role">Role:</label>
+            <label for="role">Role*:</label>
             <vee-field as="select" id="role" name="role" v-model="userData.role">
                 <option value="">Select Role</option>
                 <option value="admin">Admin</option>
@@ -33,7 +33,7 @@
             <ErrorMessage class="error-text" name="role" />
 
             <div class="gender">
-                <label class="gender">Gender:</label>
+                <label class="gender">Gender*:</label>
                 <div class="male-female">
                     <label for="male">
                         <vee-field type="radio" id="male" name="gender" value="male" v-model="userData.gender" />Male
@@ -45,19 +45,26 @@
             </div>
             <ErrorMessage class="error-text" name="gender" />
 
-            <label for="dob">Date of Birth:</label>
+            <label for="dob">Date of Birth*:</label>
             <vee-field type="date" id="dob" name="dob" v-model="userData.dob" :max="getCurrentDate()" @change="userAge" />
             <ErrorMessage class="error-text" name="dob" />
 
-            <label for="age">Age:</label>
+            <label for="age">Age*:</label>
             <vee-field type="number" id="age" name="age" placeholder="Enter your Age" v-model="userData.age" />
             <ErrorMessage class="error-text" name="age" />
 
+            <div class="required-field">
+                <p>* indicates that field are required</p>
+            </div>
+
             <div class="buttons">
-                <button type="submit" class="register-btn">Register</button>
+                <v-btn type="submit" class="register-btn">Register</v-btn>
             </div>
         </vee-form>
     </section>
+    <div class="redirect">
+        <p>Already User Then <a href="/login">Login</a> Here</p>
+    </div>
 </template>
 
 <!-- Composition API -->
@@ -127,7 +134,7 @@ const registerUserData = async () => {
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
-    margin-top: 5%;
+    margin-top: 3%;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
@@ -198,6 +205,16 @@ input[type="radio"] {
 
 .error-text {
     color: rgb(219, 81, 81);
+}
+
+.required-field,
+.redirect {
+    font-size: 15px;
+}
+
+.redirect {
+    text-align: center;
+    margin-top: 20px;
 }
 
 /* Responsive Styles */

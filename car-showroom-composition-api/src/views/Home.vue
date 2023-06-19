@@ -1,7 +1,7 @@
 <template>
     <section class="cars-data">
         <ul class="menu">
-            <li><button @click="addCarBtn">{{ $t("app-name") }}</button></li>
+            <li><button @click="addCarBtn">{{ $t("addCar") }}</button></li>
             <li class="select-language">
                 <button>
                     Select Language -
