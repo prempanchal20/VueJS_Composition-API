@@ -39,7 +39,7 @@
 
                                         <RouterLink :to="{ name: 'details', params: { id: item.id } }" v-else
                                             class="info-btn">
-                                            Info
+                                            {{ $t("info") }}
                                         </RouterLink>
                                     </div>
 
@@ -254,17 +254,16 @@ body {
 .menu {
     position: absolute;
     right: 10px;
+    display: flex;
 }
 
 .menu button {
     border: 1px solid #001f3f;
     border-radius: 8px;
-    padding: 5px 15px;
+    padding: 5px 10px;
     cursor: pointer;
-    background-color: transparent;
-    color: #001f3f;
-    font-size: 20px;
-    margin-right: 50px;
+    font-size: 15px;
+    margin-right: 15px;
     margin-top: 20px;
 }
 
@@ -291,5 +290,17 @@ body {
 
 .loader img {
     width: 30%;
+}
+
+#locale-select {
+    border: 1px solid #001f3f;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 958px) and (min-width: 350px) {
+    .loader img {
+        margin-top: 30%;
+        width: 80%;
+    }
 }
 </style>

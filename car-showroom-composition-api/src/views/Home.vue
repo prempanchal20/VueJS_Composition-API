@@ -1,7 +1,17 @@
 <template>
     <section class="cars-data">
         <ul class="menu">
-            <li><button @click="addCarBtn">Add Car</button></li>
+            <li><button @click="addCarBtn">{{ $t("app-name") }}</button></li>
+            <li class="select-language">
+                <button>
+                    Select Language -
+                    <select id="locale-select" v-model="$i18n.locale">
+                        <option value="en">English
+                        </option>
+                        <option value="hi">Hindi </option>
+                    </select>
+                </button>
+            </li>
         </ul>
         <GalleryCard @editData="editForm" />
 

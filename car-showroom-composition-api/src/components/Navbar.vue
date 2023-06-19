@@ -9,18 +9,12 @@
         <div class="navbar-links">
           <div class="user-name">
             <button v-if="userValid" class="bi bi-person-circle"></button>
-            <h1 v-if="userValid">Welcome, <b>{{ userData.name }}</b><i class="bi bi-chevron-down"
-                @click="toggleUserData"></i></h1>
-            <ul v-if="showUserData" class="user-data-list">
-              <li><i class="bi bi-person"></i>{{ userData.name }}</li>
-              <li><i class="bi bi-envelope"></i>{{ userData.email }}</li>
-              <li @click="changePassword"><i class="bi bi-key"></i>Change Password</li>
-            </ul>
+            <h1 v-if="userValid">Welcome, <b>{{ userData.name }}</b></h1>
           </div>
 
-          <RouterLink v-if="userValid" class="home" to="/">Home</RouterLink>
+          <RouterLink v-if="userValid" class="home" to="/">{{ $t("home") }}</RouterLink>
           <RouterLink v-else class="login" to="/login">Login</RouterLink>
-          <button v-if="userValid" @click="logoutBtn" class="logout-btn">Logout</button>
+          <button v-if="userValid" @click="logoutBtn" class="logout-btn">{{ $t("logout") }}</button>
           <RouterLink v-else class="register" to="/register">Register</RouterLink>
         </div>
       </div>
@@ -40,11 +34,6 @@ const router = useRouter();
 const userStore = useUserStore();
 const { userValid, userData } = storeToRefs(userStore)
 const showUserData = ref(false);
-
-
-const toggleUserData = () => {
-  showUserData.value = !showUserData.value;
-};
 
 const logoutBtn = () => {
   const response = userStore.logout()
