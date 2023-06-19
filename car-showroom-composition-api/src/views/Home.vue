@@ -6,8 +6,7 @@
                 <button>
                     Select Language -
                     <select id="locale-select" v-model="$i18n.locale">
-                        <option value="en">English
-                        </option>
+                        <option value="en">English</option>
                         <option value="hi">Hindi </option>
                     </select>
                 </button>

@@ -16,9 +16,9 @@
                 <vee-field type="password" id="password" name="password" placeholder="Enter your password"
                     v-model="loginUserData.password" />
                 <ErrorMessage class="error-text" name="password" />
-                <div class="required-field">* indicates that field are required</div>
+                <div class="required-field">* indicates that fields are required</div>
                 <div class="buttons">
-                    <v-btn color="success" class="login-btn" type="submit">Login</v-btn>
+                    <button color="success" class="login-btn" type="submit">Login</button>
                 </div>
             </vee-form>
         </div>

@@ -96,7 +96,7 @@ const deleteData = (itemID, itemName) => {
 }
 
 body {
-    background-color: #f8f8f8;
+    background-color: white;
 }
 
 .car-card {
@@ -232,9 +232,12 @@ body {
 #delete-icon {
     background-color: transparent;
     font-size: 20px;
-    color: #001f3f;
     border: none;
     cursor: pointer;
+}
+
+#delete-icon {
+    color: #e42d2d;
 }
 
 .menu {

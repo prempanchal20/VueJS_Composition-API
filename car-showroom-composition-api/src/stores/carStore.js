@@ -45,8 +45,8 @@ const useCarStore = defineStore("api", {
         .then((response) => {
           this.carDetail = response.data;
         })
-        .catch((error) => {
-          alert(error);
+        .catch(() => {
+          alert(`Car ID ${carID} is not avaliable in Showroom`);
         });
     },
 

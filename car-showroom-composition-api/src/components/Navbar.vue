@@ -12,6 +12,7 @@
             <h1 v-if="userValid">Welcome <b>{{ userData.name }}</b></h1>
           </div>
 
+          <RouterLink v-if="userData.role === 'admin'" to="/user-list">User List</RouterLink>
           <RouterLink v-if="userValid" class="home" to="/">{{ $t("home") }}</RouterLink>
           <RouterLink v-else class="login" to="/login">Login</RouterLink>
           <button v-if="userValid" @click="logoutBtn" class="logout-btn">{{ $t("logout") }}</button>
@@ -22,28 +23,21 @@
   </section>
 </template>
 
-
 <!-- Composition API -->
 <script setup>
 import { RouterLink, useRouter } from "vue-router";
 import { useUserStore } from "../stores/userStore";
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
 
 const router = useRouter();
 const userStore = useUserStore();
 const { userValid, userData } = storeToRefs(userStore)
-const showUserData = ref(false);
 
 const logoutBtn = () => {
   const response = userStore.logout()
   if (response === true) {
     router.push("/login");
   }
-}
-
-const changePassword = () => {
-  alert('This Feature will be Avaliable Soon')
 }
 </script>
 

@@ -54,11 +54,11 @@
             <ErrorMessage class="error-text" name="age" />
 
             <div class="required-field">
-                <p>* indicates that field are required</p>
+                <p>* indicates that fields are required</p>
             </div>
 
             <div class="buttons">
-                <v-btn type="submit" class="register-btn">Register</v-btn>
+                <button type="submit" class="register-btn">Register</button>
             </div>
         </vee-form>
     </section>

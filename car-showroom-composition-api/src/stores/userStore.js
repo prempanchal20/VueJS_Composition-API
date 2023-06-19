@@ -9,6 +9,7 @@ export const useUserStore = defineStore("user", {
       userData: JSON.parse(localStorage.getItem("userData")) || "",
     };
   },
+
   actions: {
     //---------- Axios API - Register User-------------//
     async registerUser(userData) {

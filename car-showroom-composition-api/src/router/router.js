@@ -5,6 +5,7 @@ import RegisterForm from "../views/RegisterForm.vue";
 import NotFound from "../views/NotFound.vue";
 import CarDetails from "../views/CarDetails.vue";
 import { useUserStore } from "../stores/userStore";
+import UserList from "../views/UserList.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     meta: { private: true },
     name: "details",
     component: CarDetails,
+  },
+  {
+    path: "/user-list",
+    name: "user-list",
+    component: UserList,
   },
 ];
 
