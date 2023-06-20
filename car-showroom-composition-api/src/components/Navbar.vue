@@ -2,17 +2,17 @@
   <section class="navbar">
     <div class="navbar-logo">
       <div class="button-home">
-        <button>Car Showroom</button>
+        <button>{{ $t("app-name") }}</button>
       </div>
 
       <div class="nav-menu">
         <div class="navbar-links">
           <div class="user-name">
             <button v-if="userValid" class="bi bi-person-circle"></button>
-            <h1 v-if="userValid">Welcome <b>{{ userData.name }}</b></h1>
+            <h1 v-if="userValid">{{ $t("welcome") }} <b>{{ userData.name }}</b></h1>
           </div>
 
-          <RouterLink v-if="userData.role === 'admin'" class="user-list" to="/user-list">Users List</RouterLink>
+          <RouterLink v-if="userData.role == 'admin'" class="user-list" to="/user-list">Users List</RouterLink>
           <RouterLink v-if="userValid" class="home" to="/">{{ $t("home") }}</RouterLink>
           <RouterLink v-else class="login" to="/login">Login</RouterLink>
           <button v-if="userValid" @click="logoutBtn" class="logout-btn">{{ $t("logout") }}</button>
@@ -23,7 +23,6 @@
   </section>
 </template>
 
-<!-- Composition API -->
 <script setup>
 import { RouterLink, useRouter } from "vue-router";
 import { useUserStore } from "../stores/userStore";
@@ -153,7 +152,8 @@ const logoutBtn = () => {
   .home,
   .login,
   .register,
-  .logout-btn {
+  .logout-btn,
+  .user-list {
     font-size: 16px;
   }
 
@@ -164,6 +164,18 @@ const logoutBtn = () => {
   .user-name {
     font-size: 14px;
   }
+}
 
+@media only screen and (max-width: 753px) {
+
+  .home,
+  .login,
+  .register,
+  .logout-btn,
+  .user-list,
+  .navbar-links button,
+  .user-name {
+    font-size: 15px;
+  }
 }
 </style>

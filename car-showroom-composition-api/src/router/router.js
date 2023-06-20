@@ -26,9 +26,10 @@ const routes = [
     name: "details",
     component: CarDetails,
   },
+
   {
     path: "/user-list",
-    meta: { private: true },
+    meta: { private: true, userAdmin: true },
     name: "UserList",
     component: UserList,
   },
@@ -42,6 +43,12 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.meta.private && !useUserStore().userValid) {
     next("/login");
+  } else if (
+    to.meta.userAdmin &&
+    useUserStore().userValid &&
+    useUserStore().userData.role !== "admin"
+  ) {
+    next("/");
   } else {
     next();
   }

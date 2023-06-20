@@ -52,7 +52,6 @@
     </section>
 </template>
 
-<!-- Composition API -->
 <script setup>
 import { useCarStore } from "../stores/carStore";
 import { onMounted, defineEmits, ref } from "vue";

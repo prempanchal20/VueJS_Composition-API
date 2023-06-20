@@ -3,5 +3,10 @@
   "home": "Home",
   "logout": "Logout",
   "addCar": "Add Car",
-  "info": "Info"
+  "info": "Info",
+  "back": "Back",
+  "car name": "Car Name",
+  "price": "Price",
+  "description": "Description",
+  "welcome": "Welcome"
 }

@@ -67,7 +67,6 @@
     </div>
 </template>
 
-<!-- Composition API -->
 <script setup>
 import { ErrorMessage } from "vee-validate";
 import { useUserStore } from "../stores/userStore";

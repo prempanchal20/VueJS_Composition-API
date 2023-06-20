@@ -19,7 +19,6 @@
     </section>
 </template>
 
-<!-- Composition API -->
 <script setup>
 import { reactive, toRefs } from 'vue';
 import CarForm from '../components/CarForm.vue';

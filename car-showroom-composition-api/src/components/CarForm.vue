@@ -40,7 +40,6 @@
     </section>
 </template>
 
-<!-- Composition API -->
 <script setup>
 import { ref, defineEmits } from "vue";
 import { ErrorMessage } from "vee-validate";

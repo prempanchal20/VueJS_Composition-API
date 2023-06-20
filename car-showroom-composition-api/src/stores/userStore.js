@@ -6,7 +6,7 @@ export const useUserStore = defineStore("user", {
     return {
       userValid: JSON.parse(localStorage.getItem("loggedIn")),
       userURL: import.meta.env.VITE_USER_API,
-      userData: localStorage.getItem("userData") || "",
+      userData: JSON.parse(localStorage.getItem("userData") || ""),
     };
   },
 
