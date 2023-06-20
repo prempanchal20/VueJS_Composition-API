@@ -6,7 +6,7 @@ export const useUserStore = defineStore("user", {
     return {
       userValid: JSON.parse(localStorage.getItem("loggedIn")),
       userURL: import.meta.env.VITE_USER_API,
-      userData: JSON.parse(localStorage.getItem("userData")) || "",
+      userData: localStorage.getItem("userData") || "",
     };
   },
 
@@ -30,6 +30,8 @@ export const useUserStore = defineStore("user", {
         if (logoutAlert === true) {
           this.userValid = false;
           localStorage.setItem("loggedIn", false);
+          localStorage.setItem("userData", null);
+          this.userData = "";
           return logoutAlert;
         }
       } catch (error) {
@@ -57,7 +59,6 @@ export const useUserStore = defineStore("user", {
             alert(`Login Successfully..!!`);
             this.userValid = true;
             this.userData = checkUserData;
-
             localStorage.setItem("userData", JSON.stringify(checkUserData));
 
             // Backup Login Credentials incase above API does not work

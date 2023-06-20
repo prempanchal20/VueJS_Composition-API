@@ -18,7 +18,7 @@
                 <ErrorMessage class="error-text" name="password" />
                 <div class="required-field">* indicates that fields are required</div>
                 <div class="buttons">
-                    <button color="success" class="login-btn" type="submit">Login</button>
+                    <v-btn color="success" class="login-btn" type="submit">Login</v-btn>
                 </div>
             </vee-form>
         </div>

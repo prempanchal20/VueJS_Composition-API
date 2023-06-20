@@ -58,7 +58,7 @@
             </div>
 
             <div class="buttons">
-                <button type="submit" class="register-btn">Register</button>
+                <v-btn type="submit" class="register-btn">Register</v-btn>
             </div>
         </vee-form>
     </section>

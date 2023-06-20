@@ -28,7 +28,8 @@ const routes = [
   },
   {
     path: "/user-list",
-    name: "user-list",
+    meta: { private: true },
+    name: "UserList",
     component: UserList,
   },
 ];

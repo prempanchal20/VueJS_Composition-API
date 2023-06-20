@@ -12,7 +12,7 @@
             <h1 v-if="userValid">Welcome <b>{{ userData.name }}</b></h1>
           </div>
 
-          <RouterLink v-if="userData.role === 'admin'" to="/user-list">User List</RouterLink>
+          <RouterLink v-if="userData.role === 'admin'" class="user-list" to="/user-list">Users List</RouterLink>
           <RouterLink v-if="userValid" class="home" to="/">{{ $t("home") }}</RouterLink>
           <RouterLink v-else class="login" to="/login">Login</RouterLink>
           <button v-if="userValid" @click="logoutBtn" class="logout-btn">{{ $t("logout") }}</button>
@@ -91,7 +91,8 @@ const logoutBtn = () => {
 
 .home,
 .login,
-.register {
+.register,
+.user-list {
   border: none;
   background-color: transparent;
   font-size: 20px;
