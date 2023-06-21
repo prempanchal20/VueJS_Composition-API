@@ -107,16 +107,6 @@ input[type="radio"] {
     margin-top: 7%;
 }
 
-.cancel-btn {
-    border: none;
-    background-color: red;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    float: left;
-}
-
 .buttons {
     display: flex;
     justify-content: center;

@@ -4,7 +4,7 @@
             <li><button @click="addCarBtn">{{ $t("addCar") }}</button></li>
             <li class="select-language">
                 <button>
-                    Select Language -
+                    {{ $t('Select Language') }} -
                     <select id="locale-select" v-model="$i18n.locale">
                         <option value="en">English</option>
                         <option value="hi">Hindi </option>

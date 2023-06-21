@@ -106,7 +106,7 @@ const submitForm = () => {
 }
 
 .modal-content {
-    background-color: #c7c0ae47;
+    background-color: lightgray;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;

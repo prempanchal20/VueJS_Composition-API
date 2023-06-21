@@ -8,5 +8,7 @@
   "car name": "Car Name",
   "price": "Price",
   "description": "Description",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "Users List": "Users List",
+  "Select Language": "Select Language"
 }

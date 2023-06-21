@@ -1,9 +1,11 @@
 <template>
     <section class="fonts">
         <Navbar />
-        <RouterView v-slot="{ Component }">
+        <RouterView v-slot="{ Component, route }">
             <Transition name="routew" mode="out-in">
-                <component :is="Component" />
+                <div :key="route.name">
+                    <component :is="Component" />
+                </div>
             </Transition>
         </RouterView>
     </section>

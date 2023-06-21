@@ -4,22 +4,26 @@
       <div class="button-home">
         <button>{{ $t("app-name") }}</button>
       </div>
-
       <div class="nav-menu">
         <div class="navbar-links">
           <div class="user-name">
+
             <button v-if="userValid" class="bi bi-person-circle"></button>
             <h1 v-if="userValid">{{ $t("welcome") }} <b>{{ userData.name }}</b></h1>
-          </div>
 
-          <RouterLink v-if="userData.role == 'admin'" class="user-list" to="/user-list">Users List</RouterLink>
-          <RouterLink v-if="userValid" class="home" to="/">{{ $t("home") }}</RouterLink>
-          <RouterLink v-else class="login" to="/login">Login</RouterLink>
-          <button v-if="userValid" @click="logoutBtn" class="logout-btn">{{ $t("logout") }}</button>
-          <RouterLink v-else class="register" to="/register">Register</RouterLink>
+            <div class="hamburger-menu" :class="{ 'open': isNavOpen }">
+              <RouterLink v-if="userData?.role == 'admin'" class="user-list" to="/user-list">{{ $t('Users List') }}
+              </RouterLink>
+              <RouterLink v-if="userValid" class="home" to="/">{{ $t("home") }}</RouterLink>
+              <RouterLink v-else class="login" to="/login">Login</RouterLink>
+              <button v-if="userValid" @click="logoutBtn" class="logout-btn">{{ $t("logout") }}</button>
+              <RouterLink v-else class="register" to="/register">Register</RouterLink>
+            </div>
+            <i class="bi bi-list" @click="toggleNav"></i>
+          </div>
         </div>
       </div>
-    </div>
+    </div>>
   </section>
 </template>
 
@@ -27,6 +31,7 @@
 import { RouterLink, useRouter } from "vue-router";
 import { useUserStore } from "../stores/userStore";
 import { storeToRefs } from 'pinia';
+import { ref } from "vue";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -38,6 +43,12 @@ const logoutBtn = () => {
     router.push("/login");
   }
 }
+
+const isNavOpen = ref(false);
+function toggleNav() {
+  isNavOpen.value = !isNavOpen.value;
+}
+
 </script>
 
 <style>
@@ -97,6 +108,7 @@ const logoutBtn = () => {
   font-size: 20px;
   color: white;
   padding-left: 30px;
+  transition: color 0.3s;
 }
 
 .navbar-links h1 {
@@ -105,11 +117,16 @@ const logoutBtn = () => {
   margin-left: 10px;
 }
 
-.bi-person,
-.bi-envelope,
-.bi-key {
-  margin-right: 10px;
-  color: #001f3f;
+.bi-person-circle,
+.bi-list {
+  font-size: 30px;
+  color: #F8F8F8;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.bi-list {
+  display: none;
 }
 
 .user-data-list {
@@ -136,33 +153,70 @@ const logoutBtn = () => {
 }
 
 @media only screen and (max-width: 950px) {
-
-  .button-home {
-    width: 40%;
-  }
-
   .navbar-logo {
     padding: 3%;
   }
 
   .navbar-logo button {
-    font-size: 20px;
+    font-size: 25px;
   }
 
   .home,
   .login,
   .register,
   .logout-btn,
-  .user-list {
-    font-size: 16px;
+  .user-list,
+  h1,
+  .navbar-links button,
+  .user-name {
+    font-size: 18px;
   }
 
-  .navbar-links button {
-    font-size: 16px;
+  .bi-list {
+    display: inline;
+    font-size: 30px;
+    color: white;
   }
 
   .user-name {
-    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger-menu {
+    display: none;
+    position: absolute;
+    top: 66px;
+    background-color: #001f3f;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .hamburger-menu.open {
+    display: block;
+    right: 30px;
+  }
+
+  .hamburger-menu a,
+  .hamburger-menu button {
+    display: block;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-weight: 100;
+    text-decoration: none;
+  }
+
+  .hamburger-menu .user-list,
+  .hamburger-menu .home,
+  .hamburger-menu .login,
+  .hamburger-menu .logout-btn,
+  .hamburger-menu .register {
+    margin: 10px;
+    transition: color 0.3s;
+  }
+
+  .bi-list {
+    margin-left: 10px;
   }
 }
 
@@ -175,7 +229,7 @@ const logoutBtn = () => {
   .user-list,
   .navbar-links button,
   .user-name {
-    font-size: 15px;
+    font-size: 18px;
   }
 }
 </style>
