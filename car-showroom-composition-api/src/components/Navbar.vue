@@ -2,7 +2,7 @@
   <section class="navbar">
     <div class="navbar-logo">
       <div class="button-home">
-        <button>{{ $t("app-name") }}</button>
+        <button>{{ $t("app_name") }}</button>
       </div>
       <div class="nav-menu">
         <div class="navbar-links">
@@ -48,7 +48,6 @@ const isNavOpen = ref(false);
 function toggleNav() {
   isNavOpen.value = !isNavOpen.value;
 }
-
 </script>
 
 <style>
