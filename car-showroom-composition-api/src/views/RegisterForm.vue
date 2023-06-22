@@ -58,7 +58,7 @@
             </div>
 
             <div class="buttons">
-                <v-btn type="submit" class="register-btn">Register</v-btn>
+                <v-btn color="success" class="register-btn" type="submit">Register</v-btn>
             </div>
         </vee-form>
     </section>
@@ -178,7 +178,6 @@ input[type="radio"] {
     float: right;
     width: 50%;
 }
-
 
 .gender {
     display: flex;
