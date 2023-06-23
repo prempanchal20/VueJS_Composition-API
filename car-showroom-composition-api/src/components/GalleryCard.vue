@@ -290,5 +290,13 @@ body {
         margin-top: 30%;
         width: 80%;
     }
+
+    .car-content {
+        margin-top: 10%;
+    }
+
+    .car-card {
+        margin: 20px;
+    }
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
     <section>
         <div class="login-form">
+
             <div class="login-form-title">
                 <h2>Login Form</h2>
             </div>
@@ -130,6 +131,17 @@ input[type="radio"] {
 .redirect {
     text-align: center;
     margin-top: 20px;
+}
+
+.routew-enter-active,
+.routew-leave-active {
+    transition: all 0.5s ease-in;
+}
+
+.routew-enter-from,
+.routew-leave-to {
+    opacity: 1;
+    transform: translateY(100px);
 }
 
 /* Responsive Styles */

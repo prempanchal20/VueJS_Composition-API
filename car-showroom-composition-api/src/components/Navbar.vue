@@ -6,24 +6,29 @@
       </div>
       <div class="nav-menu">
         <div class="navbar-links">
+          <div class="toggle"></div>
+          <div class="sidebar"></div>
           <div class="user-name">
 
             <button v-if="userValid" class="bi bi-person-circle"></button>
             <h1 v-if="userValid">{{ $t("welcome") }} <b>{{ userData.name }}</b></h1>
 
             <div class="hamburger-menu" :class="{ 'open': isNavOpen }">
-              <RouterLink v-if="userData?.role == 'admin'" class="user-list" to="/user-list">{{ $t('Users List') }}
+
+              <RouterLink v-if="userData?.role == 'admin'" @click="toggleNav" class="user-list" to="/user-list">{{
+                $t('Users List') }}
               </RouterLink>
-              <RouterLink v-if="userValid" class="home" to="/">{{ $t("home") }}</RouterLink>
-              <RouterLink v-else class="login" to="/login">Login</RouterLink>
-              <button v-if="userValid" @click="logoutBtn" class="logout-btn">{{ $t("logout") }}</button>
-              <RouterLink v-else class="register" to="/register">Register</RouterLink>
+              <RouterLink v-if="userValid" class="home" @click="toggleNav" to="/">{{ $t("home") }}</RouterLink>
+              <RouterLink v-else class="login" to="/login" @click="toggleNav">Login</RouterLink>
+              <button v-if="userValid" @click="logoutBtn(); toggleNav();" class="logout-btn">{{ $t("logout")
+              }}</button>
+              <RouterLink v-else class="register" to="/register" @click="toggleNav">Register</RouterLink>
             </div>
             <i class="bi bi-list" @click="toggleNav"></i>
           </div>
         </div>
       </div>
-    </div>>
+    </div>
   </section>
 </template>
 
@@ -187,13 +192,16 @@ function toggleNav() {
     position: absolute;
     top: 66px;
     background-color: #001f3f;
-    border-radius: 5px;
+    border-radius: 24px 6px 0px 57px;
     padding: 10px;
+
   }
 
-  .hamburger-menu.open {
+  .open {
     display: block;
-    right: 30px;
+    right: 0px;
+    width: 25%;
+    top: 57px;
   }
 
   .hamburger-menu a,
@@ -202,7 +210,6 @@ function toggleNav() {
     margin-bottom: 10px;
     color: #ffffff;
     font-weight: 100;
-    text-decoration: none;
   }
 
   .hamburger-menu .user-list,
@@ -229,6 +236,31 @@ function toggleNav() {
   .navbar-links button,
   .user-name {
     font-size: 18px;
+  }
+
+  .hamburger-menu.open {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 500px) and (min-width: 375px) {
+
+  .home,
+  .login,
+  .register,
+  .logout-btn,
+  .user-list,
+  .navbar-links button,
+  .user-name {
+    font-size: 18px;
+  }
+
+  .hamburger-menu.open {
+    width: 50%;
+  }
+
+  .button-home {
+    width: 46%;
   }
 }
 </style>

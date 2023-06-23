@@ -151,7 +151,7 @@ textarea {
 }
 
 button[type="submit"] {
-    background-color: #3bad3e;
+    background-color: #3db441d0;
     color: white;
     padding: 10px;
     border: none;
@@ -163,7 +163,7 @@ button[type="submit"] {
 }
 
 button[type="reset"] {
-    background-color: rgb(220, 52, 52);
+    background-color: rgb(196, 67, 67);
     color: white;
     padding: 10px;
     border: none;

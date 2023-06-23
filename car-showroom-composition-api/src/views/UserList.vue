@@ -4,7 +4,7 @@
         <v-table>
             <thead>
                 <tr>
-                    <th class=" text-left">ID</th>
+                    <th class=" text-left ">ID</th>
                     <th class=" text-left">User name</th>
                     <th class="text-left">User Email</th>
                     <th class="text-left">User Role</th>
@@ -55,16 +55,13 @@ thead {
     color: white;
 }
 
-v-table {
-    min-width: 1044px;
-}
-
 .v-table {
     border: 1px solid lightslategrey;
 }
 
 .text-left {
-    color: white;
+    color: white !important;
+    font-weight: 500 !important;
 }
 
 p {
