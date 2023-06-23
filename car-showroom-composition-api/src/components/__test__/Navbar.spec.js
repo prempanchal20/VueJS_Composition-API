@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar.vue";
-import { RouterLinkStub, shallowMount, createRouter } from "@vue/test-utils";
+import { RouterLinkStub, shallowMount } from "@vue/test-utils";
 import i18n from "@/includes/i18n.js";
 import { createPinia } from "pinia";
 import { useUserStore } from "@/stores/userStore";

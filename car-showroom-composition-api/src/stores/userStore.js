@@ -43,7 +43,7 @@ export const useUserStore = defineStore("user", {
     async checkUser(loginUserData) {
       try {
         const response = await axios.get(this.userURL);
-        const data = await response.data.data;
+        const data = response.data.data;
 
         if (response.status == 200) {
           const checkUserData = data.find(
@@ -54,10 +54,12 @@ export const useUserStore = defineStore("user", {
 
           if (!checkUserData) {
             alert("Invalid Credentials..!!");
+
             return false;
           } else {
             alert(`Login Successfully..!!`);
             this.userValid = true;
+
             this.userData = checkUserData;
             localStorage.setItem("userData", JSON.stringify(checkUserData));
 

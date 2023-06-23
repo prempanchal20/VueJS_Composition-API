@@ -42,7 +42,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.private && !useUserStore().userValid) {
-    console.log("object");
     next("/login");
   } else if (
     to.meta.userAdmin &&

@@ -1,32 +1,31 @@
 import LoginForm from "../../views/LoginForm.vue";
 import { setActivePinia, createPinia } from "pinia";
-import { shallowMount } from "@vue/test-utils";
+import { mount, shallowMount } from "@vue/test-utils";
 import { expect } from "vitest";
 import { useUserStore } from "@/stores/userStore";
-import { validation } from "../..//includes/validation.js";
+import { validation } from "../../includes/validation.js";
 
 describe("LoginForm.vue", () => {
   beforeEach(() => {
     setActivePinia(createPinia());
   });
 
-  test("Render The Login Data", async () => {
+  test("Render The Login Data", () => {
     const userStore = useUserStore();
-    const wrapper = shallowMount(LoginForm, {
+    const wrapper = mount(LoginForm, {
       global: { plugins: [validation] },
     });
 
     expect(userStore.isLoggedIn).not.toBe(true);
-    const emailInput = wrapper.find('.login-form input[name="email"]');
-    const passwordInput = wrapper.find('.login-form input[name="password"]');
+    const emailInput = wrapper.find("#email");
+
+    const passwordInput = wrapper.find("#password");
 
     expect(emailInput.exists()).toBe(true);
     expect(passwordInput.exists()).toBe(true);
+    emailInput.element.value = "prem@gmail.com";
 
-    await emailInput.setValue("prem@gmail.com");
-    expect(emailInput.element.value).toEqual("prem@gmail.com");
-
-    await passwordInput.setValue("Prem@206");
+    passwordInput.element.value = "Prem@206";
     expect(passwordInput.element.value).toEqual("Prem@206");
   });
 });

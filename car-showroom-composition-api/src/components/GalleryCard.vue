@@ -1,4 +1,4 @@
-<template v-slot:activator="{ props }">
+<template>
     <section>
         <div v-show="loading" class="loader">
             <img src="../assets/loader.gif" alt="loader" />
